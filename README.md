@@ -18,4 +18,7 @@ I built a little leaks chercker function too, it will facilitate you to verify y
 
 ./UnitTest.sh -small -medium -big -> Launch small, medium and big test
 
+If the 42 norminette is installed, you can use this : 
+./UnitTest.sh -norm -> Check the norm
+
 ./UnitTest.sh -make -> Launch every commands in your makefile to check if all works correctly
