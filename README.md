@@ -9,3 +9,13 @@ I still work on it but don't hesitate to create an issue to improve this UnitTes
 It will check some error cases, how many movement you do with 2, 3, 5, 100 and 500 values.
 
 I built a little leaks chercker function too, it will facilitate you to verify your project.
+
+## To launch
+
+./UnitTest.sh -all -> Launch every test
+
+./UnitTest.sh -error -> Check error cases
+
+./UnitTest.sh -small -medium -big -> Launch small, medium and big test
+
+./UnitTest.sh -make -> Launch every commands in your makefile to check if all works correctly

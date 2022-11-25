@@ -6,7 +6,7 @@
 #    By: lolemmen <lolemmen@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:13:48 by lolemmen          #+#    #+#              #
-#    Updated: 2022/11/24 17:17:39 by lolemmen         ###   ########.fr        #
+#    Updated: 2022/11/25 14:36:12 by lolemmen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,111 +24,111 @@ let "nbTest=0";
 
 ARG="";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n";
 ft_check_error 0
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using a atoi-breaker
 
 ARG="-2a 2";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n"
 ft_check_error 1
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using a non-numeric argument
 
 ARG="- 2";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n"
 ft_check_error 1
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using a non-numeric argument
 
 ARG="2 -";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n"
 ft_check_error 1
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using a non-numeric argument
 
 ARG="-2 a";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n"
 ft_check_error 1
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using a number under INT_MIN
 
 ARG="-2 -9999999999999";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n"
 ft_check_error 1
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using a number under INT_MAX
 
 ARG="-2 9999999999999 5 3 2";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n"
 ft_check_error 1
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using a duplicate number
 
 ARG="-2 -9999999999999 -2";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 result="`${ACCESS}push_swap $ARG`\n"
 ft_check_error 1
 if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Using an already sort tab
 
 ARG="-9 0 1 2 3 4 5";
 let "nbTest+=1";
-echo "Test running with [$ARG] : \c"
+ft_print "Test running with [$ARG] : " 1
 RESULT="`${ACCESS}push_swap $ARG`";
 ft_check_error 0
 COUNT=`printf "$RESULT" | wc -l | bc`;
@@ -141,12 +141,12 @@ if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Forcing non-split usage
 
 let "nbTest+=1";
-echo "Test running with [5 3 6] : \c"
+ft_print "Test running with [5 3 6] : " 1
 RESULT="`${ACCESS}push_swap "5" "3" "6"`";
 ft_check_error 0
 COUNT=`printf "$RESULT" | wc -l | bc`;
@@ -154,12 +154,12 @@ if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo
+ft_print "" 0
 
 # Forcing non-split usage
 
 let "nbTest+=1";
-echo "Test running with [5 " " ""] : \c"
+ft_print "Test running with [5 \" \" \"\"] : " 1
 RESULT="`${ACCESS}push_swap "5" " " ""`";
 ft_check_error 1
 COUNT=`printf "$RESULT" | wc -l | bc`;
@@ -167,4 +167,4 @@ if [ $leaks == 1 ]
 then
 	ft_check_leaks $ARG
 fi
-echo "\n\n$warning return error(s) and $LeakErr leaks error(s) on ${nbTest} test(s).";
+ft_print "\n\n$warning return error(s) and $LeakErr leaks error(s) on ${nbTest} test(s)." 1
