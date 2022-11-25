@@ -6,7 +6,7 @@
 #    By: lolemmen <lolemmen@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 12:41:36 by lolemmen          #+#    #+#              #
-#    Updated: 2022/11/25 14:39:14 by lolemmen         ###   ########.fr        #
+#    Updated: 2022/11/25 22:27:46 by lolemmen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,17 +46,23 @@ ft_checker()
 
 ft_check_leaks()
 {
-	LEAKS="`leaks --atExit -- ${ACCESS}push_swap $1 | grep "leaked"`"
-	CHECK=`echo ${LEAKS:15} | grep "0" | wc -l`
-
-	if [ $CHECK != 1 ]
+	ft_cmd "leaks"
+	cmd=`echo $?`
+	if [ $cmd == 1 ]
 	then
-		ft_print "${LOG_RED}\t[KO]${LOG_NOCOLOR}" 1
-		ft_print_leaks $1
-		let "ErrLeaks+=1"
-		return 1
+		ft_print "\nCommand not found : leaks" 0
 	else
-		ft_print "${LOG_GREEN}\t[OK]${LOG_NOCOLOR}" 1
+		LEAKS="`leaks --atExit -- ${ACCESS}push_swap $1 | grep "leaked"`"
+		CHECK=`echo ${LEAKS:15} | grep "0" | wc -l`
+		if [ $CHECK != 1 ]
+		then
+			ft_print "${LOG_RED}\t[KO]${LOG_NOCOLOR}" 1
+			ft_print_leaks $1
+			let "ErrLeaks+=1"
+			return 1
+		else
+			ft_print "${LOG_GREEN}\t[OK]${LOG_NOCOLOR}" 1
+		fi
 	fi
 	return 0
 }
@@ -192,5 +198,15 @@ ft_header_tab()
 		ft_print "\tLeaks" 0
 	else
 		ft_print "" 0
+	fi
+}
+
+ft_cmd()
+{
+	if command -v $1 &> /dev/null
+	then
+		return 0
+	else
+		return 1
 	fi
 }

@@ -6,7 +6,7 @@
 #    By: lolemmen <lolemmen@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 12:31:18 by lolemmen          #+#    #+#              #
-#    Updated: 2022/11/24 17:40:48 by lolemmen         ###   ########.fr        #
+#    Updated: 2022/11/25 14:43:47 by lolemmen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,9 @@ do
 			make -C $ACCESS
 			echo "clean : "
 			make clean -C $ACCESS
+			;;
+		'test')
+			ft_test
 			;;
 		*)
 		echo "To use this UnitTester, these flags are available :\n
